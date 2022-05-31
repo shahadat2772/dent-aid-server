@@ -10,7 +10,6 @@ app.use(express.json());
 app.use(cors());
 
 // Getting connected with MONGODB
-
 // URI
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.offlr.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
@@ -19,19 +18,18 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   console.log("COndected");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
 async function run() {
   try {
     await client.connect();
-    console.log("DB CONNECTED");
+
+    const servicesCollection = client.db("dent-aid").collection("services");
+
+    app.get("/services", async (req, res) => {
+      const services = await servicesCollection.find({}).toArray();
+      res.send(services);
+    });
   } finally {
-    //   await client.close()
+    // await client.close();
   }
 }
 
