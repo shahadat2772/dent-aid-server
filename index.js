@@ -7,11 +7,13 @@ require("dotenv").config();
 
 // Middle were
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://dentaid-bc9ec.web.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://dentaid-bc9ec.web.app",
+//   })
+// );
+
+app.use(cors());
 
 // Getting connected with MONGODB
 // URI
