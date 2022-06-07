@@ -9,7 +9,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://dentaid-bc9ec.web.app",
+    origin: "https://dentaid-bc9ec.web.app/",
   })
 );
 
